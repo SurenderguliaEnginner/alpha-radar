@@ -1,0 +1,66 @@
+networks:
+  alpha-net:
+    driver: bridge
+
+volumes:
+  postgres_data:
+  redis_data:
+  kestra_data:
+
+services:
+  # 1. PostgreSQL (Relational Master Store)
+  postgres:
+    image: postgres:16-alpine
+    container_name: alpha-postgres
+    networks:
+      - alpha-net
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: alpha_admin
+      POSTGRES_PASSWORD: alpha_password
+      POSTGRES_DB: alpharadar_db
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U alpha_admin -d alpharadar_db"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # 2. Redis (Hot Cache for Sub-15ms Serving)
+  redis:
+    image: redis:7-alpine
+    container_name: alpha-redis
+    networks:
+      - alpha-net
+    ports:
+      - "6379:6379"
+    volumes:
+      - redis_data:/data
+    healthcheck:
+      test: ["CMD", "redis-cli", "ping"]
+      interval: 5s
+      timeout: 5s
+      retries: 5
+
+  # 3. Kestra Standalone (Declarative Orchestration Engine)
+  kestra:
+    image: kestra/kestra:latest
+    container_name: alpha-kestra
+    networks:
+      - alpha-net
+    ports:
+      - "8080:8080"
+    command: server standalone
+    environment:
+      KESTRA_CONFIGURATION: |
+        kestra:
+          server:
+            basic-auth:
+              enabled: false
+    volumes:
+      - kestra_data:/app/storage
+    depends_on:
+      postgres:
+        condition: service_healthy

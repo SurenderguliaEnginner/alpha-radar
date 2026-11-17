@@ -1,0 +1,27 @@
+id: alpha_radar_daily_quant_engine
+namespace: prod.trading
+
+tasks:
+  - id: run_global_terminal_scan
+    type: io.kestra.plugin.scripts.shell.Commands
+    commands:
+      - python src/unified_global_terminal.py 8986
+
+  - id: audit_private_ledger_scorecard
+    type: io.kestra.plugin.scripts.shell.Commands
+    commands:
+      - python src/private_ledger.py
+
+  - id: send_telegram_alert
+    type: io.kestra.plugin.scripts.shell.Commands
+    commands:
+      - python src/telegram_alerts.py
+
+triggers:
+  - id: nse_market_close_trigger
+    type: io.kestra.plugin.core.trigger.Schedule
+    cron: "30 15 * * 1-5" # 3:30 PM Mon-Fri (Indian Market Close)
+
+  - id: us_market_close_trigger
+    type: io.kestra.plugin.core.trigger.Schedule
+    cron: "15 16 * * 1-5" # 4:15 PM Mon-Fri (US Market Close)
