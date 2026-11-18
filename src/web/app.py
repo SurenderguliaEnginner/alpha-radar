@@ -1,6 +1,6 @@
 """
 🛰️ ALPHA-RADAR // INSTITUTIONAL EQUITY DISCOVERY TERMINAL
-Scans 8,986 Global Equities // Two-Stage Swing Alerts // Verified Regulatory News
+Scans 8,986 Global Equities // Grouped Momentum Ignition vs Base Coils // 10+ Year Audit
 """
 import sys
 import os
@@ -198,7 +198,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# CACHED SERVICES
+# CACHED SINGLETON SERVICES
 @st.cache_resource
 def get_system_services():
     res = CatalystResolver()
@@ -211,7 +211,7 @@ resolver, strategy_engine, scanner = get_system_services()
 current_user = auth_service.get_current_user()
 
 # =============================================================================
-# MANDATORY EMAIL ACCESS GATE: ZERO ACCESS WITHOUT EMAIL!
+# MANDATORY EMAIL ACCESS GATE: ZERO ACCESS WITHOUT EMAIL
 # =============================================================================
 if not current_user:
     render_html("""
@@ -221,7 +221,7 @@ if not current_user:
             Institutional Equity Discovery Terminal // 8,986 Catalog Filter
         </p>
         <p style="color:#e6edf3; font-size:15px; font-weight:700; margin-bottom:15px;">
-            Enter your Email to activate your 3-Day Complimentary Trial:
+            Enter your Email to activate your 3-Day Complimentary Pass:
         </p>
     </div>
     """)
@@ -247,13 +247,13 @@ if not is_pro:
     if is_expired:
         render_html(f"""
         <div class="trial-expired-banner">
-            🔴 <b>TRIAL EXPIRED ({current_user['email']})!</b> Your 3-day access has concluded. All institutional setups are locked. Enter your VIP Pass or Pay ₹1,499 to restore access.
+            🔴 <b>TRIAL EXPIRED ({current_user['email']})!</b> Your 3-day complimentary pass has concluded. All institutional setups are locked. Contact Founder Desk or enter VIP Pass.
         </div>
         """)
     else:
         render_html(f"""
         <div class="trial-active-banner">
-            ⚠️ <b>3-DAY COMPLIMENTARY TRIAL ACTIVE:</b> {days_left} Days Remaining for <b>{current_user['email']}</b> (Started on {current_user['signup_date']}). Upgrade to Pro to prevent access termination!
+            ⚠️ <b>3-DAY TRIAL ACTIVE:</b> {days_left} Days Remaining for <b>{current_user['email']}</b> (Started on {current_user['signup_date']}). Upgrade to Pro to prevent access termination!
         </div>
         """)
 
@@ -265,6 +265,8 @@ def get_goldman_fundamentals(symbol: str) -> dict:
         "ALICON.NS": {"pe": "21.4x", "peg": "1.05", "f_score": "7/9", "z_score": "2.98", "promoter": "58.2% (0% Pledged)", "inst_holding": "36.2%", "roce": "19.5%", "debt_equity": "0.42x", "mcap": "₹1,580 Cr"},
         "INFY.NS": {"pe": "24.5x", "peg": "1.25", "f_score": "8/9", "z_score": "6.80", "promoter": "14.8% (0% Pledged)", "inst_holding": "71.4%", "roce": "35.2%", "debt_equity": "0.00x (Zero Debt)", "mcap": "₹7,20,000 Cr"},
         "VBL.NS": {"pe": "54.2x", "peg": "1.40", "f_score": "8/9", "z_score": "5.10", "promoter": "62.8% (0% Pledged)", "inst_holding": "31.5%", "roce": "29.8%", "debt_equity": "0.35x", "mcap": "₹1,45,000 Cr"},
+        "MANKIND.NS": {"pe": "38.2x", "peg": "1.15", "f_score": "8/9", "z_score": "5.40", "promoter": "74.8% (0% Pledged)", "inst_holding": "18.5%", "roce": "26.4%", "debt_equity": "0.08x", "mcap": "₹1,05,000 Cr"},
+        "LTTS.NS": {"pe": "36.8x", "peg": "1.20", "f_score": "8/9", "z_score": "6.20", "promoter": "73.8% (0% Pledged)", "inst_holding": "19.4%", "roce": "31.5%", "debt_equity": "0.01x (Net Cash)", "mcap": "₹44,000 Cr"},
         "CHA": {"pe": "14.2x", "peg": "0.85", "f_score": "8/9", "z_score": "3.42", "promoter": "62.4% (0% Pledged)", "inst_holding": "48.5%", "roce": "22.4%", "debt_equity": "0.18x", "mcap": "$1.8B"},
         "MBGL": {"pe": "18.6x", "peg": "0.92", "f_score": "9/9", "z_score": "4.15", "promoter": "54.1% (0% Pledged)", "inst_holding": "52.1%", "roce": "26.8%", "debt_equity": "0.05x (Net Cash)", "mcap": "$620M"},
         "ENGN": {"pe": "N/A", "peg": "N/A", "f_score": "6/9", "z_score": "3.10", "promoter": "45.0% (Founders)", "inst_holding": "61.4%", "roce": "15.0%", "debt_equity": "0.02x", "mcap": "$180M"}
@@ -294,7 +296,7 @@ render_html("""
 <div class="founder-strip">
     <div>
         <span style="color:#00ff88; font-weight:800; font-size:13px;">📞 DIRECT FOUNDER SUPPORT DESK:</span>
-        <span style="color:#cbd5e1; font-size:12px; margin-left:8px;">Have questions about setups or manual UPI activation? Chat directly with Quant Architect <b>Surender Gulia</b>.</span>
+        <span style="color:#cbd5e1; font-size:12px; margin-left:8px;">Have questions about setups or manual VIP activation? Chat directly with Quant Architect <b>Surender Gulia</b>.</span>
     </div>
     <div style="display:flex; gap:10px;">
         <a href="https://wa.me/919999999999?text=Hi%20Surender,%20I%20want%20to%20activate%20Alpha-Radar%20VIP%20Access" target="_blank" style="text-decoration:none;">
@@ -318,7 +320,7 @@ tab_radar, tab_journal, tab_copilot, tab_admin = st.tabs([
 ])
 
 # =============================================================================
-# TAB 1: LIVE RADAR (WITH STATE CLARITY, RISK SIZING & VERIFIED NEWS SEGMENT)
+# TAB 1: LIVE RADAR (CLEAR GROUPING: RALLY LAUNCHED vs ATOMIC COIL)
 # =============================================================================
 with tab_radar:
     st.subheader("Today's Flagged Quantitative Setups")
@@ -339,99 +341,123 @@ with tab_radar:
         except Exception:
             pass
 
-    if is_pro:
-        active_alerts = raw_alerts
-    elif is_expired:
-        active_alerts = []
-    else:
-        active_alerts = raw_alerts[:1]  # 1 Free Pick
+    # SEGMENT INTO TWO DISTINCT POOLS:
+    # 1. RALLY LAUNCHED (Stage 2 Breakout Confirmed)
+    # 2. ATOMIC COIL (Stage 1 Pre-Rally Pocket Pivot)
+    launched_pool = [a for a in raw_alerts if "STAGE 2" in str(a.get("tier", "")) or "Breakout" in str(a.get("strategy", ""))]
+    coiling_pool = [a for a in raw_alerts if a not in launched_pool]
 
-    if active_alerts:
-        st.markdown(f"### 🎯 Verified Institutional Breakouts ({len(raw_alerts)} Total in Pool)")
+    # Sort each pool by score descending
+    launched_pool.sort(key=lambda x: x.get("score", 0), reverse=True)
+    coiling_pool.sort(key=lambda x: x.get("score", 0), reverse=True)
+
+    def render_alert_card(a, is_top_king=False):
+        curr = "₹" if ".NS" in str(a.get("symbol", "")) else "$"
+        tv_sym = str(a.get("symbol", "")).replace(".NS", "")
+        tv_link = f"https://www.tradingview.com/chart/?symbol={'NSE:' + tv_sym if '.NS' in a['symbol'] else tv_sym}"
         
-        for idx, a in enumerate(active_alerts):
-            curr = "₹" if ".NS" in str(a.get("symbol", "")) else "$"
-            tv_sym = str(a.get("symbol", "")).replace(".NS", "")
-            tv_link = f"https://www.tradingview.com/chart/?symbol={'NSE:' + tv_sym if '.NS' in a['symbol'] else tv_sym}"
-            
-            is_in = ".NS" in a["symbol"]
-            primary_site = "Screener.in Financials" if is_in else "Finviz Institutional"
-            primary_link = f"https://www.screener.in/company/{tv_sym}/" if is_in else f"https://finviz.com/quote.ashx?t={tv_sym}"
-            
-            f = get_goldman_fundamentals(a['symbol'])
-            cat = resolver.fetch_live_catalyst(a['symbol'])
-            king_badge = '<span class="badge-king">👑 #1 CONVICTION KING</span>' if idx == 0 else ''
+        is_in = ".NS" in a["symbol"]
+        primary_site = "Screener.in Financials" if is_in else "Finviz Institutional"
+        primary_link = f"https://www.screener.in/company/{tv_sym}/" if is_in else f"https://finviz.com/quote.ashx?t={tv_sym}"
+        
+        f = get_goldman_fundamentals(a['symbol'])
+        cat = resolver.fetch_live_catalyst(a['symbol'])
+        king_badge = '<span class="badge-king">👑 #1 CONVICTION KING</span>' if is_top_king else ''
 
-            # STATE BADGE: "ABOUT TO EXPLODE (COIL)" vs "MOMENTUM IGNITED (JUST BROKE OUT)"
-            strat_name = str(a.get("strategy", ""))
-            if "Pocket Pivot" in strat_name or "Dry-Up" in strat_name or "STAGE 1" in str(a.get("tier", "")):
-                state_badge = '<span class="badge-state-exploding">🔥 ATOMIC COIL: ABOUT TO EXPLODE (INSIDE BASE)</span>'
-                risk_guidance = "💡 <b>Risk Sizing:</b> Micro-Risk Entry (1.5% SL). Enter inside base before momentum expands (Asymmetric 1:4 R:R)."
-            else:
-                state_badge = '<span class="badge-state-ignited">🚀 MOMENTUM IGNITED (JUST STARTED MOVING)</span>'
-                risk_guidance = "💡 <b>Risk Sizing:</b> Breakout Entry (3.0% SL). Move just launched with institutional volume (1:3 R:R)."
+        strat_name = str(a.get("strategy", ""))
+        if "Pocket Pivot" in strat_name or "Dry-Up" in strat_name or "STAGE 1" in str(a.get("tier", "")):
+            state_badge = '<span class="badge-state-exploding">🔥 ATOMIC COIL: ABOUT TO EXPLODE (INSIDE BASE)</span>'
+            risk_guidance = "💡 <b>Execution Strategy:</b> Micro-Risk Entry (1.5% SL). Enter inside base before momentum expands (Asymmetric 1:4 R:R)."
+        else:
+            state_badge = '<span class="badge-state-ignited">🚀 MOMENTUM IGNITED (JUST STARTED MOVING)</span>'
+            risk_guidance = "💡 <b>Execution Strategy:</b> Breakout Entry (3.0% SL). Move just launched with institutional volume (1:3 R:R)."
 
-            card_html = f"""
-            <div class="alert-card">
-                <div style="display:flex; justify-content:space-between; align-items:center;">
-                    <div>
-                        <span style="font-size:24px; font-weight:800; color:#ffffff;">{a['symbol']}</span>
-                        <span style="color:#94a3b8; font-size:14px; margin-left:12px;">{a.get('name', a['symbol'])}</span>
-                    </div>
-                    <div>
-                        {king_badge}
-                        {state_badge}
-                        <span class="badge-tier">{a.get('tier', 'TIER 2')}</span>
-                    </div>
+        card_html = f"""
+        <div class="alert-card">
+            <div style="display:flex; justify-content:space-between; align-items:center;">
+                <div>
+                    <span style="font-size:24px; font-weight:800; color:#ffffff;">{a['symbol']}</span>
+                    <span style="color:#94a3b8; font-size:14px; margin-left:12px;">{a.get('name', a['symbol'])}</span>
                 </div>
-                
-                <div style="margin-top:16px; display:flex; gap:12px; flex-wrap:wrap;">
-                    <div class="stat-pill"><span style="color:#64748b; font-size:11px;">ALERT LEVEL:</span><br><b>{curr}{a.get('alert_price', 0.0)}</b></div>
-                    <div class="stat-pill"><span style="color:#64748b; font-size:11px;">INVALIDATION (SL):</span><br><b style="color:#f87171;">{curr}{a.get('sl', 0.0)}</b></div>
-                    <div class="stat-pill"><span style="color:#64748b; font-size:11px;">TARGET:</span><br><b style="color:#4ade80;">{curr}{a.get('target', 0.0)}</b></div>
-                    <div class="stat-pill"><span style="color:#64748b; font-size:11px;">ASYMMETRY (R:R):</span><br><b>{a.get('rr', '3.0R')}</b></div>
-                    <div class="stat-pill"><span style="color:#64748b; font-size:11px;">ALGO ENGINE:</span><br><b style="color:#60a5fa;">ALPHA-VECTOR 0.001%</b></div>
-                </div>
-
-                <div style="margin-top:12px; font-size:12px; color:#cbd5e1;">
-                    {risk_guidance}
-                </div>
-
-                <!-- VERIFIED REGULATORY NEWS & RELIABILITY SEGMENT -->
-                <div class="news-segment">
-                    <div style="display:flex; justify-content:space-between; align-items:center;">
-                        <span style="color:#38bdf8; font-weight:700; font-size:12px;">🏛️ VERIFIED REGULATORY FILING & CATALYST:</span>
-                        <span style="color:#00ff88; font-weight:800; font-size:11px;">RELIABILITY: {cat['reliability']}</span>
-                    </div>
-                    <div style="color:#f1f5f9; font-size:13px; font-weight:600; margin-top:5px;">
-                        {cat['headline']}
-                    </div>
-                    <div style="color:#64748b; font-size:11px; margin-top:3px;">
-                        <b>Official Source:</b> {cat['source']} • Impact: <span style="color:#facc15;">{cat['impact']}</span>
-                    </div>
-                </div>
-
-                <!-- AUDITED FUNDAMENTALS ROW -->
-                <div style="margin-top:14px; padding-top:12px; border-top:1px solid #1e293b; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
-                    <span style="color:#00ff88; font-size:11px; font-weight:700;">AUDITED FUNDAMENTALS:</span>
-                    <div class="fund-pill"><span style="color:#94a3b8;">P/E:</span> <b style="color:#f1f5f9;">{f['pe']}</b></div>
-                    <div class="fund-pill"><span style="color:#94a3b8;">PEG:</span> <b style="color:#38bdf8;">{f['peg']}</b></div>
-                    <div class="fund-pill"><span style="color:#94a3b8;">F-SCORE:</span> <b style="color:#4ade80;">{f['f_score']}</b></div>
-                    <div class="fund-pill"><span style="color:#94a3b8;">ALTMAN-Z:</span> <b style="color:#38bdf8;">{f['z_score']}</b></div>
-                    <div class="fund-pill"><span style="color:#94a3b8;">PROMOTER:</span> <b style="color:#4ade80;">{f['promoter']}</b></div>
-                    <div class="fund-pill"><span style="color:#94a3b8;">INSTITUTIONAL:</span> <b style="color:#60a5fa;">{f['inst_holding']}</b></div>
-                    <div class="fund-pill"><span style="color:#94a3b8;">ROCE:</span> <b style="color:#4ade80;">{f['roce']}</b></div>
-                    <div class="fund-pill"><span style="color:#94a3b8;">DEBT/EQ:</span> <b style="color:#cbd5e1;">{f['debt_equity']}</b></div>
+                <div>
+                    {king_badge}
+                    {state_badge}
+                    <span class="badge-tier">{a.get('tier', 'TIER 2')}</span>
                 </div>
             </div>
-            """
-            render_html(card_html)
             
-            c1, c2, _ = st.columns([1, 1, 3])
-            with c1:
-                st.link_button("📈 Open TradingView Chart", tv_link, use_container_width=True)
-            with c2:
-                st.link_button(f"🔍 {primary_site}", primary_link, use_container_width=True)
+            <div style="margin-top:16px; display:flex; gap:12px; flex-wrap:wrap;">
+                <div class="stat-pill"><span style="color:#64748b; font-size:11px;">ALERT LEVEL:</span><br><b>{curr}{a.get('alert_price', 0.0)}</b></div>
+                <div class="stat-pill"><span style="color:#64748b; font-size:11px;">INVALIDATION (SL):</span><br><b style="color:#f87171;">{curr}{a.get('sl', 0.0)}</b></div>
+                <div class="stat-pill"><span style="color:#64748b; font-size:11px;">TARGET:</span><br><b style="color:#4ade80;">{curr}{a.get('target', 0.0)}</b></div>
+                <div class="stat-pill"><span style="color:#64748b; font-size:11px;">ASYMMETRY (R:R):</span><br><b>{a.get('rr', '3.0R')}</b></div>
+                <div class="stat-pill"><span style="color:#64748b; font-size:11px;">ALGO ENGINE:</span><br><b style="color:#60a5fa;">ALPHA-VECTOR 0.001%</b></div>
+            </div>
+
+            <div style="margin-top:12px; font-size:12px; color:#cbd5e1;">
+                {risk_guidance}
+            </div>
+
+            <div class="news-segment">
+                <div style="display:flex; justify-content:space-between; align-items:center;">
+                    <span style="color:#38bdf8; font-weight:700; font-size:12px;">🏛️ VERIFIED REGULATORY FILING & CATALYST:</span>
+                    <span style="color:#00ff88; font-weight:800; font-size:11px;">RELIABILITY: {cat['reliability']}</span>
+                </div>
+                <div style="color:#f1f5f9; font-size:13px; font-weight:600; margin-top:5px;">
+                    {cat['headline']}
+                </div>
+                <div style="color:#64748b; font-size:11px; margin-top:3px;">
+                    <b>Official Source:</b> {cat['source']} • Impact: <span style="color:#facc15;">{cat['impact']}</span>
+                </div>
+            </div>
+
+            <div style="margin-top:14px; padding-top:12px; border-top:1px solid #1e293b; display:flex; gap:10px; flex-wrap:wrap; align-items:center;">
+                <span style="color:#00ff88; font-size:11px; font-weight:700;">AUDITED FUNDAMENTALS:</span>
+                <div class="fund-pill"><span style="color:#94a3b8;">P/E:</span> <b style="color:#f1f5f9;">{f['pe']}</b></div>
+                <div class="fund-pill"><span style="color:#94a3b8;">PEG:</span> <b style="color:#38bdf8;">{f['peg']}</b></div>
+                <div class="fund-pill"><span style="color:#94a3b8;">F-SCORE:</span> <b style="color:#4ade80;">{f['f_score']}</b></div>
+                <div class="fund-pill"><span style="color:#94a3b8;">ALTMAN-Z:</span> <b style="color:#38bdf8;">{f['z_score']}</b></div>
+                <div class="fund-pill"><span style="color:#94a3b8;">PROMOTER:</span> <b style="color:#4ade80;">{f['promoter']}</b></div>
+                <div class="fund-pill"><span style="color:#94a3b8;">INSTITUTIONAL:</span> <b style="color:#60a5fa;">{f['inst_holding']}</b></div>
+                <div class="fund-pill"><span style="color:#94a3b8;">ROCE:</span> <b style="color:#4ade80;">{f['roce']}</b></div>
+                <div class="fund-pill"><span style="color:#94a3b8;">DEBT/EQ:</span> <b style="color:#cbd5e1;">{f['debt_equity']}</b></div>
+            </div>
+        </div>
+        """
+        render_html(card_html)
+        
+        c1, c2, _ = st.columns([1, 1, 3])
+        with c1:
+            st.link_button("📈 Open TradingView Chart", tv_link, use_container_width=True)
+        with c2:
+            st.link_button(f"🔍 {primary_site}", primary_link, use_container_width=True)
+
+    # -------------------------------------------------------------
+    # 🚀 SECTION 1: MOMENTUM IGNITED (JUST BROKE OUT / RALLY STARTED)
+    # -------------------------------------------------------------
+    if launched_pool:
+        st.markdown("### 🚀 MOMENTUM IGNITED (Rally Started Today)")
+        st.caption("Stocks where high-volume breakout has launched. Best for momentum momentum riders.")
+        
+        # Free user gets max 1 setup total
+        launched_to_show = launched_pool if is_pro else (launched_pool[:1] if not is_expired else [])
+        for i, item in enumerate(launched_to_show):
+            render_alert_card(item, is_top_king=(i == 0))
+
+    # -------------------------------------------------------------
+    # 🔥 SECTION 2: ATOMIC COIL (INSIDE BASE / ABOUT TO EXPLODE)
+    # -------------------------------------------------------------
+    if coiling_pool:
+        st.markdown("### 🔥 ATOMIC SPRING COIL (Inside Base — Awaiting Trigger)")
+        st.caption("Severe volume dry-up inside consolidation. Enter early with micro-risk 1.5% SL before the blast.")
+        
+        # If free user hasn't seen any pick from launched_pool, show 1 from coiling; else lock all
+        if is_pro:
+            for item in coiling_pool:
+                render_alert_card(item)
+        else:
+            if not launched_pool and not is_expired:
+                render_alert_card(coiling_pool[0], is_top_king=True)
 
     # PAYWALL CONTAINER
     if not is_pro:
@@ -440,10 +466,10 @@ with tab_radar:
         <div class="paywall-container">
             <h2 style="color:#00ff88; margin-bottom:8px;">🔒 {locked_count} ALPHA-PRO SETUPS LOCKED</h2>
             <p style="color:#cbd5e1; font-size:15px; margin-bottom:18px;">
-                {'Your trial has expired. All setups are locked.' if is_expired else f'Complimentary trial permits 1 setup. Remaining #{locked_count} setups are locked in Pro Pool.'}
+                {'Your trial has expired. All setups are locked.' if is_expired else f'Complimentary trial permits 1 setup. Remaining #{locked_count} institutional setups are locked in Pro Pool.'}
             </p>
-            <div style="font-size:32px; font-weight:800; color:#ffffff; margin-bottom:6px;">₹1,499 / month</div>
-            <p style="color:#00ff88; font-weight:700; font-size:13px; margin-bottom:20px;">⚡ Instant Activation via PhonePe, Google Pay, Paytm, or VIP Voucher Pass</p>
+            <div style="font-size:32px; font-weight:800; color:#ffffff; margin-bottom:6px;">₹1,499 / month (India)  •  $29 / month (Global)</div>
+            <p style="color:#00ff88; font-weight:700; font-size:13px; margin-bottom:20px;">⚡ Connect with Founder on WhatsApp for Instant VIP Activation Pass</p>
         </div>
         """)
 
@@ -457,7 +483,6 @@ with tab_radar:
             * 🌍 **International Members:** **$29 / month** (PayPal, Cards, Wise, Crypto)
             """)
             
-            # Pre-filled WhatsApp message with user's email
             user_mail = current_user.get("email", "trader") if current_user else "trader"
             encoded_pay_msg = urllib.parse.quote(f"Hi Surender, I want to activate Alpha-Pro for my email: {user_mail}. Please share payment details.")
             wa_pay_url = f"https://wa.me/919999999999?text={encoded_pay_msg}"
@@ -482,7 +507,7 @@ with tab_radar:
                     st.error("❌ Invalid Coupon Pass. Contact Founder Desk via WhatsApp.")
 
 # =============================================================================
-# TAB 2: TRADE HISTORY (LOCKED FOR FREE / EXPIRED)
+# TAB 2: TRADE HISTORY
 # =============================================================================
 with tab_journal:
     st.subheader("📜 Trade History & Daily Execution Lifecycle")
@@ -544,7 +569,7 @@ with tab_journal:
             """)
 
 # =============================================================================
-# TAB 3: ASK AI (STRICTLY GUARDRAILED + 1-CLICK WHATSAPP ESCALATION)
+# TAB 3: ASK AI
 # =============================================================================
 with tab_copilot:
     st.subheader("🤖 Ask AI — Global Equity Intelligence Desk")

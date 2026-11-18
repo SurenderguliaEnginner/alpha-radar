@@ -1,0 +1,36 @@
+name: Alpha-Radar 3:45 AM Nightly EOD Scan
+
+on:
+  schedule:
+    - cron: '15 22 * * 1-5'
+  workflow_dispatch:
+
+jobs:
+  nightly-scan:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout Repository
+        uses: actions/checkout@v4
+
+      - name: Set up Python 3.11
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11'
+          cache: 'pip'
+
+      - name: Install Dependencies
+        run: |
+          pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Run Global EOD Market Scanner
+        run: |
+          python -m src.scanner.pipeline
+
+      - name: Commit & Push Latest Scans
+        run: |
+          git config --global user.name "AlphaRadar-Bot"
+          git config --global user.email "bot@alpha-radar.quant"
+          git add data/latest_scans.parquet
+          git diff --quiet && git diff --staged --quiet || (git commit -m "chore(telemetry): automated nightly scan update [skip ci]" && git push)
