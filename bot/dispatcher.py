@@ -23,7 +23,7 @@ TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")      # e.g. "@alpharadar_al
 REAL_TELEGRAM_LINK = "https://t.me/+q9FeUYiA0R9mMTc1"
 REAL_WHATSAPP_LINK = "https://chat.whatsapp.com/E1fth8LNzuAE576qG6UXJX"
 LIVE_APP_URL = "https://alpha-radar-terminal.streamlit.app"
-FOUNDER_WA_LINK = "https://wa.me/919999999999?text=Hi%20Surender,%20I%20want%20to%20activate%20Alpha-Radar%20VIP%20Access"
+FOUNDER_WA_LINK = "https://wa.me/9306861775?text=Hi%20Surender,%20I%20want%20to%20activate%20Alpha-Radar%20VIP%20Access"
 
 class AlphaDispatcherBot:
     def __init__(self, scans_path: str = SCANS_PATH):
