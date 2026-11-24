@@ -1,6 +1,6 @@
 """
 🛰️ ALPHA-RADAR // INSTITUTIONAL EQUITY DISCOVERY TERMINAL
-Scans 8,986 Global Equities // Grouped Momentum Ignition vs Base Coils // 10+ Year Audit
+Scans 8,986 Global Equities // Live VIP WhatsApp & Telegram Communities Wired
 """
 import sys
 import os
@@ -19,6 +19,10 @@ from src.strategy.engine import StrategyEngine
 from src.catalyst.resolver import CatalystResolver
 from src.scanner.pipeline import GlobalMarketScanner, SCANS_OUTPUT_PATH
 from src.auth.service import auth_service
+
+# REAL VERIFIED COMMUNITY DESKS
+REAL_TELEGRAM_LINK = "https://t.me/+q9FeUYiA0R9mMTc1"
+REAL_WHATSAPP_LINK = "https://chat.whatsapp.com/E1fth8LNzuAE576qG6UXJX"
 
 def render_html(raw_html: str):
     lines = [line.strip() for line in raw_html.splitlines() if line.strip() and not line.strip().startswith("<!--")]
@@ -291,19 +295,19 @@ with c_auth:
         auth_service.logout()
         st.rerun()
 
-# FLOATING DIRECT FOUNDER SUPPORT STRIP
-render_html("""
+# FLOATING DIRECT FOUNDER SUPPORT STRIP (WIRED TO REAL CHANNELS)
+render_html(f"""
 <div class="founder-strip">
     <div>
         <span style="color:#00ff88; font-weight:800; font-size:13px;">📞 DIRECT FOUNDER SUPPORT DESK:</span>
-        <span style="color:#cbd5e1; font-size:12px; margin-left:8px;">Have questions about setups or manual VIP activation? Chat directly with Quant Architect <b>Surender Gulia</b>.</span>
+        <span style="color:#cbd5e1; font-size:12px; margin-left:8px;">Have questions about setups or VIP access? Chat directly with Quant Architect <b>Surender Gulia</b>.</span>
     </div>
     <div style="display:flex; gap:10px;">
-        <a href="https://wa.me/919999999999?text=Hi%20Surender,%20I%20want%20to%20activate%20Alpha-Radar%20VIP%20Access" target="_blank" style="text-decoration:none;">
-            <span style="background:#128c7e; color:white; padding:6px 14px; border-radius:5px; font-weight:700; font-size:11px;">💬 WhatsApp Direct</span>
+        <a href="{REAL_WHATSAPP_LINK}" target="_blank" style="text-decoration:none;">
+            <span style="background:#128c7e; color:white; padding:6px 14px; border-radius:5px; font-weight:700; font-size:11px;">💬 WhatsApp VIP Desk</span>
         </a>
-        <a href="https://t.me/SurenderguliaEnginner" target="_blank" style="text-decoration:none;">
-            <span style="background:#229ed9; color:white; padding:6px 14px; border-radius:5px; font-weight:700; font-size:11px;">📢 Telegram Direct</span>
+        <a href="{REAL_TELEGRAM_LINK}" target="_blank" style="text-decoration:none;">
+            <span style="background:#229ed9; color:white; padding:6px 14px; border-radius:5px; font-weight:700; font-size:11px;">📢 Telegram VIP Channel</span>
         </a>
     </div>
 </div>
@@ -341,13 +345,10 @@ with tab_radar:
         except Exception:
             pass
 
-    # SEGMENT INTO TWO DISTINCT POOLS:
-    # 1. RALLY LAUNCHED (Stage 2 Breakout Confirmed)
-    # 2. ATOMIC COIL (Stage 1 Pre-Rally Pocket Pivot)
+    # SEGMENT INTO TWO DISTINCT POOLS
     launched_pool = [a for a in raw_alerts if "STAGE 2" in str(a.get("tier", "")) or "Breakout" in str(a.get("strategy", ""))]
     coiling_pool = [a for a in raw_alerts if a not in launched_pool]
 
-    # Sort each pool by score descending
     launched_pool.sort(key=lambda x: x.get("score", 0), reverse=True)
     coiling_pool.sort(key=lambda x: x.get("score", 0), reverse=True)
 
@@ -432,26 +433,18 @@ with tab_radar:
         with c2:
             st.link_button(f"🔍 {primary_site}", primary_link, use_container_width=True)
 
-    # -------------------------------------------------------------
-    # 🚀 SECTION 1: MOMENTUM IGNITED (JUST BROKE OUT / RALLY STARTED)
-    # -------------------------------------------------------------
+    # 1. RALLY LAUNCHED SECTION
     if launched_pool:
         st.markdown("### 🚀 MOMENTUM IGNITED (Rally Started Today)")
-        st.caption("Stocks where high-volume breakout has launched. Best for momentum momentum riders.")
-        
-        # Free user gets max 1 setup total
+        st.caption("Stocks where high-volume breakout has launched. Best for momentum riders.")
         launched_to_show = launched_pool if is_pro else (launched_pool[:1] if not is_expired else [])
         for i, item in enumerate(launched_to_show):
             render_alert_card(item, is_top_king=(i == 0))
 
-    # -------------------------------------------------------------
-    # 🔥 SECTION 2: ATOMIC COIL (INSIDE BASE / ABOUT TO EXPLODE)
-    # -------------------------------------------------------------
+    # 2. ATOMIC COIL SECTION
     if coiling_pool:
         st.markdown("### 🔥 ATOMIC SPRING COIL (Inside Base — Awaiting Trigger)")
         st.caption("Severe volume dry-up inside consolidation. Enter early with micro-risk 1.5% SL before the blast.")
-        
-        # If free user hasn't seen any pick from launched_pool, show 1 from coiling; else lock all
         if is_pro:
             for item in coiling_pool:
                 render_alert_card(item)
@@ -469,7 +462,7 @@ with tab_radar:
                 {'Your trial has expired. All setups are locked.' if is_expired else f'Complimentary trial permits 1 setup. Remaining #{locked_count} institutional setups are locked in Pro Pool.'}
             </p>
             <div style="font-size:32px; font-weight:800; color:#ffffff; margin-bottom:6px;">₹1,499 / month (India)  •  $29 / month (Global)</div>
-            <p style="color:#00ff88; font-weight:700; font-size:13px; margin-bottom:20px;">⚡ Connect with Founder on WhatsApp for Instant VIP Activation Pass</p>
+            <p style="color:#00ff88; font-weight:700; font-size:13px; margin-bottom:20px;">⚡ Connect with Founder Surender Gulia for Instant VIP Activation Pass</p>
         </div>
         """)
 
@@ -483,11 +476,7 @@ with tab_radar:
             * 🌍 **International Members:** **$29 / month** (PayPal, Cards, Wise, Crypto)
             """)
             
-            user_mail = current_user.get("email", "trader") if current_user else "trader"
-            encoded_pay_msg = urllib.parse.quote(f"Hi Surender, I want to activate Alpha-Pro for my email: {user_mail}. Please share payment details.")
-            wa_pay_url = f"https://wa.me/919999999999?text={encoded_pay_msg}"
-            
-            st.link_button("💬 CHAT ON WHATSAPP TO ACTIVATE PRO ➔", wa_pay_url, use_container_width=True)
+            st.link_button("💬 CHAT ON WHATSAPP TO ACTIVATE PRO ➔", REAL_WHATSAPP_LINK, use_container_width=True)
             
             if st.button("⚡ [TESTING] SIMULATE SUCCESSFUL PAYMENT", use_container_width=True):
                 auth_service.upgrade_to_pro()
@@ -569,24 +558,39 @@ with tab_journal:
             """)
 
 # =============================================================================
-# TAB 3: ASK AI
+# TAB 3: ASK AI (STRICTLY GUARDRAILED + 1-CLICK WHATSAPP ESCALATION)
 # =============================================================================
 with tab_copilot:
     st.subheader("🤖 Ask AI — Global Equity Intelligence Desk")
     st.caption("Deep institutional research synthesis for ANY stock worldwide. Queries strictly restricted to financial assets.")
 
-    user_query = st.text_input("Enter Ticker, Company Name, or Specific Question", placeholder="e.g. 'Analyze Shaily Plastics export moat', 'NVDA valuation & stage', 'Reliance debt'")
+    user_query = st.text_input("Enter Ticker, Company Name, or Specific Question", placeholder="e.g. 'Analyze Shaily Plastics export moat', 'NVDA valuation & stage', 'Reliance debt'", key="ask_ai_main_query")
     
     NON_FINANCIAL_KEYWORDS = [
         "poem", "recipe", "joke", "pizza", "president", "weather", "song", "movie", "cricket", "football", "history of"
     ]
     
+    # 🔒 ANTI-PAYWALL PROMPT LEAK SHIELD: Kills attempts to steal locked picks from AI
+    PROMPT_LEAK_KEYWORDS = [
+        "top 3", "top pick", "best stock", "what to buy", "locked stock", 
+        "today's alert", "recommend stock", "give me picks", "give me signals",
+        "which stock should i buy", "free pick"
+    ]
+    
     if user_query:
+        # Hacker Input Sanitization
         user_query = re.sub(r'[^A-Za-z0-9\.\-\s]', '', user_query).strip()[:25]
         q_lower = user_query.lower()
         
+        # 1. Anti-Paywall Leak Check
+        if any(leak in q_lower for leak in PROMPT_LEAK_KEYWORDS):
+            st.error("🔒 ACCESS RESTRICTED: Ask AI is prohibited from revealing proprietary live radar picks or bypassing subscription tiers. Today's verified institutional setups are strictly displayed under the 'Live Radar Alerts' tab. Please query a specific ticker (e.g. 'Analyze NVDA' or 'Infosys ROCE').")
+            st.stop()
+
+        # 2. Non-Financial Guardrail Check
         if any(bad in q_lower for bad in NON_FINANCIAL_KEYWORDS) and not any(f in q_lower for f in ["stock", "share", "pe", "earnings", "nse", "nasdaq"]):
             st.error("⚠️ ACCESS RESTRICTED: Ask AI is an institutional quantitative system restricted strictly to global equities, SEC/SEBI filings, and market microstructure. Please enter a stock ticker or company name.")
+            st.stop()
         else:
             matched = resolver.resolve(user_query)
             lookup_symbol = matched['symbol'] if matched else user_query.strip().upper()
@@ -657,12 +661,9 @@ with tab_copilot:
                             """
                             render_html(card_html)
 
-                        encoded_msg = urllib.parse.quote(f"Hi Surender, I am analyzing {lookup_symbol} on Alpha-Radar. Query: '{user_query}'. Looking for institutional guidance.")
-                        wa_link = f"https://wa.me/919999999999?text={encoded_msg}"
-                        
                         st.markdown(f"""
                         <div style="margin-top:16px;">
-                            <a href="{wa_link}" target="_blank" style="text-decoration:none;">
+                            <a href="{REAL_WHATSAPP_LINK}" target="_blank" style="text-decoration:none;">
                                 <div style="background:#128c7e; color:white; padding:10px 18px; border-radius:6px; text-align:center; font-weight:800; font-size:13px; display:inline-block;">
                                     💬 Escalate this query to Quant Lead Surender on WhatsApp ➔
                                 </div>
