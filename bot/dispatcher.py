@@ -22,7 +22,6 @@ TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN", "")  # e.g. "123456789:ABCd
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID", "")      # e.g. "@alpharadar_alerts" or numeric channel ID
 REAL_TELEGRAM_LINK = "https://t.me/+q9FeUYiA0R9mMTc1"
 REAL_WHATSAPP_LINK = "https://chat.whatsapp.com/E1fth8LNzuAE576qG6UXJX"
-
 LIVE_APP_URL = "https://alpha-radar-terminal.streamlit.app"
 FOUNDER_WA_LINK = "https://wa.me/919999999999?text=Hi%20Surender,%20I%20want%20to%20activate%20Alpha-Radar%20VIP%20Access"
 
